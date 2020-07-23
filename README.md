@@ -1,24 +1,44 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Store Finder is a small full-stack application to find local dealers.
 
-Things you may want to cover:
+The dealer data is fetched from Salesforce and displayed in a map and list view
+in the front-end.
 
-* Ruby version
+The application is written in Ruby on Rails with a SQLite database and React.js
+on the frontend.
 
-* System dependencies
+## To run the application locally:
 
-* Configuration
+1. Copy the config file
 
-* Database creation
+Run:
+```
+cp config/salesforce.yml.example config/salesforce.yml
+```
+and fill in the real username, password, security token, client id and secret. 
 
-* Database initialization
+2. Start the rails server with:
 
-* How to run the test suite
+```
+bundle exec rails s
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+3. Visit `localhost:3000` in your browser to see the app up-and-running
 
-* Deployment instructions
+When the application is loaded for the first time, all dealers are fetched from
+Salesforce and stored in a local database.
 
-* ...
+### To consume updates and deletions from Salesforce:
+
+Run the following consumers locally, without closing the terminal windows:
+
+```
+bundle exec rake salesforce:run_created_consumer
+bundle exec rake salesforce:run_updated_consumer
+bundle exec rake salesforce:run_deleted_consumer
+```
+
+The consumers consume account creation / update / and deletion events from the
+Salesforce Streaming API and update the local records accordingly.
+

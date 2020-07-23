@@ -1,17 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import GoogleMapReact from 'google-map-react';
 
 import DealerPin from './DealerPin';
 
+const defaultProps = {
+  center: {
+    lat: 40.730610,
+    lng: -73.935242   
+  },
+  zoom: 5
+};
+
 const Map = (props) => {
-  // to-do: add prop-types
-  const defaultProps = {
-    center: {
-      lat: 52.5200,
-      lng: 13.4050   
-    },
-    zoom: 11
-  };
 
   const renderPins = () => {
     let allPins = []
@@ -19,7 +20,8 @@ const Map = (props) => {
     props.dealers.map((dealer, index) => {
       allPins.push(
         <DealerPin
-          key={parseInt(dealer.id)}
+          key={index}
+          id={dealer.id}
           lat={parseFloat(dealer.latitude)}
           lng={parseFloat(dealer.longitude)}
           name={dealer.name}
@@ -31,15 +33,19 @@ const Map = (props) => {
   }
 
   return (
-    <div style={{ height: '100vh', width: '100%' }}>
+    <div className={'pure-u-1 pure-u-md-2-3'} style={{ height: '100vh' }}>
       <GoogleMapReact
         defaultCenter={defaultProps.center}
         defaultZoom={defaultProps.zoom}
       >
-     {renderPins()}
+       {renderPins()}
       </GoogleMapReact>
     </div>
   )
+}
+
+Map.propTypes = {
+  dealers: PropTypes.array,
 }
 
 export default Map

@@ -1,15 +1,9 @@
 class DealersController < ApplicationController
   def index
-    dealers = Dealer.all
+    Salesforce::SyncronizeRecords.run
+
+    # Only loading 10 dealers temporarily
+    dealers = Dealer.limit(10)
     render json: dealers
   end
-
-  def show
-  end
-
-  #private
-
-  #def dealer
-  #  @dealer ||= Dealer.find(params[:id])
-  #end
 end

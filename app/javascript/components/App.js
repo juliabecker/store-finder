@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Map from "./Map"
+import Map from './Map';
+import List from './List';
 
 const App = () => {
   const [hasError, setErrors] = useState(false);
@@ -23,9 +24,12 @@ const App = () => {
     // to-do: check if necessary
     if (dealers.length) {
       return (
-        <div>
-          <h1>Store Locator</h1>
+        <div className={'pure-g'}>
+          <div className={'pure-u-1'}>
+            <h1>Store Locator</h1>
+          </div>
           <Map dealers={dealers}/>
+          <List dealers={dealers}/>
         </div>
       )
     } else {

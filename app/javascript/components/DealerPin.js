@@ -1,23 +1,27 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react'
+import PropTypes from 'prop-types'
+import useGlobal from '../store'
 
 const DealerPin = (props) => {
-  const pinStyle = {
-    color: 'blue',
-    height: '10px',
-    width: '10px'
-  };
+  const [globalState, globalActions] = useGlobal()
+
+  const selectIfSelected = (id) => {
+    return globalState.selectedDealer == id ? ' selected' : ''
+  }
 
   return (
-    <div style={pinStyle}
+    <div
+      className={'pin' + selectIfSelected(props.id)}
       lat={props.lat}
       lng={props.lng}
       text={props.name}
+      onClick={() => globalActions.selectDealer(props.id)}
     ></div>
-  );
-};
+  )
+}
 
 DealerPin.propTypes = {
+  id: PropTypes.number,
   lat: PropTypes.number,
   lng: PropTypes.number,
   name: PropTypes.string,

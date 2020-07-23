@@ -1,3 +1,78 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+body, h1, h2, h3, h4, p {
+  font-family: 'Raleway', sans-serif;
+}
+
+h1 {
+  text-align: center;
+}
+
+.list {
+  list-style-type: none;
+  border: 1px solid black;
+  padding: 0px;
+  margin-top: 0px;
+}
+
+.list-item {
+  border-bottom: 1px solid black;
+  padding-left: 10px;
+  padding-top: 20px;
+  color: #999;
+
+  &:hover {
+    background: #efefef;
+    cursor: pointer;
+    color: #333;
+  }
+
+  &.selected {
+    background: #efefef;
+    color: #333;
+  }
+
+  h4 {
+    margin-top: 0px;
+  }
+}
+
+.pin {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  border-radius: 50%;
+  border: 8px solid #000;
+  width: 8px;
+  height: 8px;
+
+  &:hover {
+    border: 8px solid #2fbf9b;
+    cursor: pointer;
+
+    &:after {
+      border-top: 17px solid #2fbf9b;
+    }
+  }
+
+  &.selected {
+    border: 8px solid #2fbf9b;
+
+    &:after {
+      border-top: 17px solid #2fbf9b;
+    }
+  }
+}
+
+.pin::after {
+  position: absolute;
+  content: '';
+  width: 0px;
+  height: 0px;
+  bottom: -30px;
+  left: -6px;
+  border: 10px solid transparent;
+  border-top: 17px solid #000;
+}
