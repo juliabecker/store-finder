@@ -1,0 +1,17 @@
+common: &common
+  api_version: '39.0'
+  username: '<username>'
+  password: '<password>'
+  security_token: '<security_token>'
+  client_id: '<client_id>'
+  client_secret: '<client_secret>'
+#  host: 'test.salesforce.com'
+
+test:
+  <<: *common
+
+development:
+  <<: *common
+
+production:
+  <<: *common
